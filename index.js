@@ -73,4 +73,4 @@ process.on("SIGINT", () => {
 });
 
 // ぱすー（8200）
-httpServer.listen(8200);
+httpServer.listen(config.port);

@@ -88,37 +88,42 @@
             <p class="title">((title))</p>
             <p class="count">──</p>
             <p class="description">((description))</p>
-            <button type="button" disabled>((buttonLabel))</button>
+            <button type="button">((buttonLabel))</button>
         </article>
     </body>
     <script>
         const audio = new Audio("((sound))");
         var retryCount = 0;
         var socket = null;
+        var timeoutId = null;
         function connect() {
             socket = new WebSocket("((websocketUrl))");
             socket.onmessage = (msg) => {
                 if (msg.data[0] === "c") {
                     retryCount = 0;
-                    document.querySelector("article button").disabled = false;
                     document.querySelector("article .count").textContent = msg.data.slice(1);
                 }
             };
             socket.onclose = () => {
-                document.querySelector("article button").disabled = true;
+                socket = null;
                 if (retryCount < 10) {
-                    setTimeout(connect, retryCount * 3 * 1000);
+                    timeoutId = setTimeout(connect, retryCount * 3 * 1000);
                 }
                 retryCount++;
             };
         }
         document.querySelector("article button").onclick = () => {
-            if (socket && socket.readyState === 1) {
-                audio.currentTime = 0;
-                audio.play();
-                socket.send("i");
+            if (socket) {
+                if (socket.readyState === 1) {
+                    audio.currentTime = 0;
+                    audio.play();
+                    socket.send("i");
+                }
+            } else {
+                if (timeoutId) clearTimeout(timeoutId);
+                connect();
             }
-        }
+        };
         connect();
     </script>
 </html>
