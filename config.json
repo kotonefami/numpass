@@ -1,0 +1,12 @@
+{
+    "title": "にゃんぱすーボタン",
+    "description": "にゃんぱすーをシェアできる全く新しい画期的なWEBサービスですのん",
+    "buttonLabel": "にゃんぱすー",
+    "accentColor": "#c9c4d9",
+    "accentColorDarken": "#b8a6f1",
+    "backgroundImage": "https://nyanpass.com/assets/img/back.jpg",
+    "backgroundPosition": "center bottom",
+    "favicon": "./favicon.ico",
+    "sound": "./nyanpass.mp3",
+    "websocketUrl": "ws://153.126.146.146:8200/ws"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "famipass",
+  "version": "1.0.0",
+  "description": "に○んぱすーをシェアできる全く新しい画期的なプラットフォームですのん",
+  "type": "module",
+  "main": "index.js",
+  "author": "Kotone Fami",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.11.0"
+  }
+}
